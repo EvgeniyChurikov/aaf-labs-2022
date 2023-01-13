@@ -57,7 +57,10 @@ std::string Storage::search(SearchRequest request) {
     std::stringstream ss;
     const std::string &trie_name = request.getTrieName();
     if (tries.contains(trie_name)) {
-        std::vector<std::string> values = tries[trie_name].search();
+        std::vector<std::string> values = tries[trie_name].search(
+                request.getWord1(), request.getWord2(),
+                request.getReverse(),
+                request.getBetween(), request.getMatch());
         if (!values.empty()) {
             ss << std::quoted(values[0]);
             for (int i = 1; i < values.size(); ++i) {

@@ -66,12 +66,34 @@ public:
 class SearchRequest : public Request {
 private:
     std::string trie_name;
+
+    std::string word1, word2;
+
+    bool reverse, between, match;
 public:
-    explicit SearchRequest(std::string trie_name) : Request(), trie_name(std::move(trie_name)) {}
+    explicit SearchRequest(
+            std::string trie_name,
+            bool between, bool match,
+            std::string word1, std::string word2,
+            bool reverse) : Request(),
+            trie_name(std::move(trie_name)),
+            between(between), match(match),
+            word1(std::move(word1)), word2(std::move(word2)),
+            reverse(reverse) {}
 
     CommandName getCommandName() override { return SEARCH; }
 
     std::string getTrieName() { return trie_name; }
+
+    std::string getWord1() { return word1; }
+
+    std::string getWord2() { return word2; }
+
+    bool getReverse() { return reverse; }
+
+    bool getBetween() { return between; }
+
+    bool getMatch() { return match; }
 };
 
 #endif

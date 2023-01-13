@@ -24,7 +24,7 @@ public:
 
     bool contains(std::string str);
 
-    std::vector<std::string> search();
+    std::vector<std::string> search(std::string word1, std::string word2, bool reverse, bool between, bool match);
 };
 
 
